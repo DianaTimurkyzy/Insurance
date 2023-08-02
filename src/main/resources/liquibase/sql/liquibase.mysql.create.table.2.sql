@@ -1,0 +1,10 @@
+CREATE TABLE transaction
+(
+    ID            INT NOT NULL AUTO_INCREMENT,
+    MONTH         VARCHAR(50) NULL,
+    PAID_AT       DATE NULL,
+    AMOUNT_PAID   INT NULL,
+    CUSTOMER_ID   INT NULL,
+    PRIMARY KEY (ID),
+    FOREIGN KEY (CUSTOMER_ID) REFERENCES customer (ID)
+);

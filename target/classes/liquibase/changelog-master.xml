@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
+
+    <changeSet id="1" author="diana">
+        <sqlFile path="sql/liquibase.mysql.create.table.1.sql"
+                 splitStatements="true"
+                 endDelimiter=";"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="2" author="diana">
+        <sqlFile path="sql/liquibase.mysql.create.table.2.sql"
+                 splitStatements="true"
+                 endDelimiter=";"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+
+</databaseChangeLog>
