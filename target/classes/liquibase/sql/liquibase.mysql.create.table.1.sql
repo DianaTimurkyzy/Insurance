@@ -3,43 +3,42 @@
 CREATE TABLE bank_account
 (
     `ID`             INT NOT NULL AUTO_INCREMENT,
-    `ACCOUNT_NUMBER` INT NULL,
-    `NAME`           VARCHAR(50) NULL,
+    `ACCOUNT_NUMBER` INT NOT NULL,
+    `NAME`           VARCHAR(50) NOT NULL,
     `FUNDS`          INT NULL,
-    `OPENING_DATE`   DATE NULL,
-    `COUNTRY`        VARCHAR(100) NULL,
+    `OPENING_DATE`   DATE NOT NULL,
+    `COUNTRY`        VARCHAR(100) NOT NULL,
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE owners
+CREATE TABLE company
 (
     `ID`                   INT NOT NULL AUTO_INCREMENT,
-    `FIRST_NAME`           VARCHAR(50) NULL,
-    `LAST_NAME`            VARCHAR(50) NULL,
+    `NAME`                 VARCHAR(50) NOT NULL,
     `EMAIL`                VARCHAR(50) NULL,
-    `SIN`                  VARCHAR(10) NULL,
-    `COUNTRY_TAX_RESIDENT` VARCHAR(100) NULL,
-    `BANK_ID`              INT NULL,
+    `WEBSITE_URL`          VARCHAR(150) NULL,
+    `FOUNDATION_DATE`      DATE NOT NULL ,
+    `BANK_ACCOUNT_ID`              INT NULL,
     PRIMARY KEY (ID),
-    FOREIGN KEY (BANK_ID) REFERENCES bank_account (ID)
+    FOREIGN KEY (BANK_ACCOUNT_ID) REFERENCES bank_account (ID) ON DELETE CASCADE
 );
 
 CREATE TABLE insurance
 (
     `ID`                  INT NOT NULL AUTO_INCREMENT,
     `TYPE`                VARCHAR(50) NULL,
-    `PRICE_PER_MONTH`     INT NULL,
+    `PRICE_PER_MONTH`     INT NOT NULL,
     `COVERAGE_PERCENTAGE` INT NULL,
-    `BANK_ID`             INT NULL,
+    `BANK_ACCOUNT_ID`     INT NULL,
     PRIMARY KEY (ID),
-    FOREIGN KEY (BANK_ID) REFERENCES bank_account (ID)
+    FOREIGN KEY (BANK_ACCOUNT_ID) REFERENCES bank_account (ID) ON DELETE CASCADE
 );
 
 CREATE TABLE customer
 (
     `ID`           INT         NOT NULL AUTO_INCREMENT,
-    `SIN`          VARCHAR(10) NOT NULL,
-    `IS_PAID`      TINYINT(1) NULL,
+    `SIN`          VARCHAR(12) NOT NULL,
+    `IS_PAID`      TINYINT     NULL,
     `SIGNING_DATE` DATE        NOT NULL,
     PRIMARY KEY (ID)
 );
@@ -48,6 +47,6 @@ CREATE TABLE insurance_customer
 (
     `INSURANCE_ID` INT NOT NULL,
     `CUSTOMER_ID`  INT NOT NULL,
-    FOREIGN KEY (INSURANCE_ID) REFERENCES insurance (ID),
-    FOREIGN KEY (CUSTOMER_ID) REFERENCES customer (ID)
+    FOREIGN KEY (INSURANCE_ID) REFERENCES insurance (ID) ON DELETE CASCADE,
+    FOREIGN KEY (CUSTOMER_ID) REFERENCES customer (ID) ON DELETE CASCADE
 );

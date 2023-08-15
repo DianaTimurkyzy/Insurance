@@ -56,7 +56,6 @@ public class CustomerServiceImpl implements CustomerService {
             );
             customer.addInsurance(insurance);
             repository.save(customer);
-            System.out.println(request.getCustomerDTO().isPaid() + "service");
         }
     }
 

@@ -1,14 +1,14 @@
 package com.diana.insurance.controller.request;
 
 import com.diana.insurance.controller.request.dto.BankAccountDTO;
-import com.diana.insurance.controller.request.dto.OwnerDTO;
+import com.diana.insurance.controller.request.dto.CompanyDTO;
 import lombok.Data;
 
 @Data
-public class OwnerAndBankAccountRequest {
+public class CompanyAndBankAccountRequest {
 
     private BankAccountDTO bankAccountDTO;
 
-    private OwnerDTO ownerDTO;
+    private CompanyDTO companyDTO;
 
 }

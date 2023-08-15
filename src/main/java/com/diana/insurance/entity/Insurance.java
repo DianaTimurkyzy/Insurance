@@ -27,7 +27,7 @@ public class Insurance {
     private int coveragePercentage;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "BANK_ID")
+    @JoinColumn(name = "BANK_ACCOUNT_ID")
     private BankAccount bankAccount;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -2,23 +2,25 @@ package com.diana.insurance.controller.request.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Data
-public class OwnerDTO {
+public class CompanyDTO {
 
     @NotBlank
-    private String firstName;
-
-    @NotBlank
-    private String lastName;
+    private String name;
 
     @Email
     @NotBlank
     private String email;
 
-    private int sin;
-
     @NotBlank
-    private String countryTaxResident;
+    private String websiteUrl;
+
+    @PastOrPresent
+    private LocalDate foundationDate;
+
 }

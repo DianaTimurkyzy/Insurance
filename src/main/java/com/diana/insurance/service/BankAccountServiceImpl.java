@@ -6,7 +6,9 @@ import com.diana.insurance.entity.BankAccount;
 import com.diana.insurance.repository.BankAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -43,6 +45,20 @@ public class BankAccountServiceImpl implements BankAccountService {
             );
             repository.save(bankAccount);
         }
+    }
+
+    @Override
+    public void saveLogo(MultipartFile file, long id) {
+
+        BankAccount bankAccount = repository.findById(id).get();
+
+        try {
+            bankAccount.setLogo(file.getBytes());
+            repository.save(bankAccount);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override

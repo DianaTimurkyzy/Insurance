@@ -26,9 +26,12 @@ public class BankAccount {
     @Column(name = "OPENING_DATE")
     private LocalDate openingDate;
 
-    @Column(name = "Country")
+    @Column(name = "COUNTRY")
     private String country;
 
+    @Lob
+    @Column(name = "LOGO")
+    private byte[] logo;
 
     public BankAccount() {
     }
