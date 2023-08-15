@@ -8,5 +8,5 @@ public class InsuranceRequest {
 
     private InsuranceDTO insuranceDTO;
 
-    private long bankId;
+    private long bankAccountId;
 }

@@ -57,10 +57,10 @@ public class InsuranceServiceImpl implements InsuranceService {
 
     @Override
     public void save(InsuranceRequest request) {
-        if (repository.existsByInsuranceTypeAndBankAccountId(request.getInsuranceDTO().getInsuranceType(), request.getBankId())) {
+        if (repository.existsByInsuranceTypeAndBankAccountId(request.getInsuranceDTO().getInsuranceType(), request.getBankAccountId())) {
             throw new ObjectAlreadyExistsException("Bank already has the Insurance type");
         } else {
-            BankAccount bankAccount = bankAccountRepository.findById(request.getBankId()).get();
+            BankAccount bankAccount = bankAccountRepository.findById(request.getBankAccountId()).get();
             Insurance insurance = new Insurance(
                     request.getInsuranceDTO().getInsuranceType(),
                     request.getInsuranceDTO().getPricePerMonth(),

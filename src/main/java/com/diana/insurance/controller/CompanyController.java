@@ -1,9 +1,9 @@
 package com.diana.insurance.controller;
 
-import com.diana.insurance.controller.request.OwnerAndBankAccountIdRequest;
-import com.diana.insurance.controller.request.OwnerAndBankAccountRequest;
-import com.diana.insurance.entity.Owner;
-import com.diana.insurance.service.OwnerService;
+import com.diana.insurance.controller.request.CompanyAndBankAccountIdRequest;
+import com.diana.insurance.controller.request.CompanyAndBankAccountRequest;
+import com.diana.insurance.entity.Company;
+import com.diana.insurance.service.CompanyService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,33 +11,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/owner")
-public class OwnerController {
+@RequestMapping("/company")
+public class CompanyController {
 
-    private final OwnerService service;
+    private final CompanyService service;
 
     @Autowired
-    public OwnerController(OwnerService service) {
+    public CompanyController(CompanyService service) {
         this.service = service;
     }
 
     @GetMapping("/getById")
-    public Owner getById(@RequestParam long id) {
+    public Company getById(@RequestParam long id) {
         return service.getById(id);
     }
 
     @GetMapping("/getAll")
-    public List<Owner> getAll() {
+    public List<Company> getAll() {
         return service.getAll();
     }
 
     @PostMapping("/save")
-    public void save(@RequestBody @Valid OwnerAndBankAccountIdRequest request) {
+    public void save(@RequestBody @Valid CompanyAndBankAccountIdRequest request) {
         service.save(request);
     }
 
     @PostMapping("/saveWithBankAccount")
-    public void saveWithBankAccount(@RequestBody @Valid OwnerAndBankAccountRequest request) {
+    public void saveWithBankAccount(@RequestBody @Valid CompanyAndBankAccountRequest request) {
         service.saveWithBankAccount(request);
     }
 

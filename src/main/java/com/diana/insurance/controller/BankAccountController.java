@@ -6,6 +6,7 @@ import com.diana.insurance.service.BankAccountService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -33,6 +34,11 @@ public class BankAccountController {
     @PostMapping("/save")
     public void save(@RequestBody @Valid BankAccountRequest request) {
         service.save(request);
+    }
+
+    @PostMapping("/saveLogo")
+    public void save(@RequestParam MultipartFile file, @RequestParam long id) {
+        service.saveLogo(file, id);
     }
 
     @DeleteMapping("/deleteById")

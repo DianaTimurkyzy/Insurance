@@ -26,7 +26,9 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public Transaction getById(long id) {
-        return repository.findById(id).get();
+        Transaction transaction = repository.findById(id).get();
+        transaction.setCustomer(null);
+        return transaction;
     }
 
     @Override
