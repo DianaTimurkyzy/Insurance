@@ -1,37 +1,38 @@
 /* Create Tables */
 
-CREATE TABLE bank_account
+CREATE TABLE bank
 (
-    `ID`             INT NOT NULL AUTO_INCREMENT,
-    `ACCOUNT_NUMBER` INT NOT NULL,
-    `NAME`           VARCHAR(50) NOT NULL,
-    `FUNDS`          INT NULL,
-    `OPENING_DATE`   DATE NOT NULL,
-    `COUNTRY`        VARCHAR(100) NOT NULL,
+    `ID`                  INT          NOT NULL AUTO_INCREMENT,
+    `REGISTRATION_NUMBER` VARCHAR(100) NOT NULL,
+    `NAME`                VARCHAR(50)  NOT NULL,
+    `FUNDS`               INT          NULL,
+    `OPENING_DATE`        DATE         NOT NULL,
+    `COUNTRY`             VARCHAR(100) NOT NULL,
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE company
+CREATE TABLE owner
 (
-    `ID`                   INT NOT NULL AUTO_INCREMENT,
-    `NAME`                 VARCHAR(50) NOT NULL,
-    `EMAIL`                VARCHAR(50) NULL,
-    `WEBSITE_URL`          VARCHAR(150) NULL,
-    `FOUNDATION_DATE`      DATE NOT NULL ,
-    `BANK_ACCOUNT_ID`              INT NULL,
+    `ID`                   INT          NOT NULL AUTO_INCREMENT,
+    `FIRST_NAME`           VARCHAR(50)  NOT NULL,
+    `LAST_NAME`            VARCHAR(50)  NOT NULL,
+    `EMAIL`                VARCHAR(150) NULL,
+    `SIN`                  INT          NOT NULL,
+    `COUNTRY_TAX_RESIDENT` VARCHAR(50)  NOT NULL,
+    `BANK_ID`              INT          NULL,
     PRIMARY KEY (ID),
-    FOREIGN KEY (BANK_ACCOUNT_ID) REFERENCES bank_account (ID) ON DELETE CASCADE
+    FOREIGN KEY (BANK_ID) REFERENCES bank (ID) ON DELETE CASCADE
 );
 
 CREATE TABLE insurance
 (
-    `ID`                  INT NOT NULL AUTO_INCREMENT,
+    `ID`                  INT         NOT NULL AUTO_INCREMENT,
     `TYPE`                VARCHAR(50) NULL,
-    `PRICE_PER_MONTH`     INT NOT NULL,
-    `COVERAGE_PERCENTAGE` INT NULL,
-    `BANK_ACCOUNT_ID`     INT NULL,
+    `PRICE_PER_MONTH`     INT         NOT NULL,
+    `COVERAGE_PERCENTAGE` INT         NULL,
+    `BANK_ID`             INT         NULL,
     PRIMARY KEY (ID),
-    FOREIGN KEY (BANK_ACCOUNT_ID) REFERENCES bank_account (ID) ON DELETE CASCADE
+    FOREIGN KEY (BANK_ID) REFERENCES bank (ID) ON DELETE CASCADE
 );
 
 CREATE TABLE customer

@@ -7,15 +7,15 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name = "bank_account")
-public class BankAccount {
+@Table(name = "bank")
+public class Bank {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private long Id;
 
-    @Column(name = "ACCOUNT_NUMBER")
-    private String accountNumber;
+    @Column(name = "REGISTRATION_NUMBER")
+    private String registrationNumber;
 
     @Column(name = "NAME")
     private String name;
@@ -33,11 +33,11 @@ public class BankAccount {
     @Column(name = "LOGO")
     private byte[] logo;
 
-    public BankAccount() {
+    public Bank() {
     }
 
-    public BankAccount(String accountNumber, String name, int funds, LocalDate openingDate, String country) {
-        this.accountNumber = accountNumber;
+    public Bank(String registrationNumber, String name, int funds, LocalDate openingDate, String country) {
+        this.registrationNumber = registrationNumber;
         this.name = name;
         this.funds = funds;
         this.openingDate = openingDate;

@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Save Bank</title>
+</head>
+<body>
+
+<div class="container">
+
+    <h3>Bank Directory</h3>
+    <hr>
+
+    <p class="h4 mb-4">Save Bank</p>
+
+    <form action="#" th:action="@{/bank/save}"
+          th:object="${bank}" method="POST" enctype="multipart/form-data">
+
+        <label for="registrationNumber"> Registration Number </label>
+        <input type="text" th:field="*{bankDTO.registrationNumber}" name="registrationNumber" id="registrationNumber"
+               class="form-control mb4 w-25">
+
+        <label for="name"> Name </label>
+        <input type="text" th:field="*{bankDTO.name}" name="name" id="name"
+               class="form-control mb4 w-25">
+
+        <label for="funds"> Funds </label>
+        <input type="number" th:field="*{bankDTO.funds}" name="funds" id="funds"
+               class="form-control mb4 w-25">
+
+        <label for="foundationDate"> Foundation Date </label>
+        <input type="date" th:field="*{bankDTO.openingDate}" name="foundationDate" id="foundationDate"
+               class="form-control mb4 w-25">
+
+        <label for="country"> Country </label>
+        <input type="text" th:field="*{bankDTO.country}" name="country" id="country"
+               class="form-control mb4 w-25">
+
+        <button type="submit" class="btn btn-info col-2">Save</button>
+
+    </form>
+
+    <hr>
+    <a th:href="@{/bank/getAll}">Back to Bank List</a>
+
+</div>
+
+</body>
+</html>

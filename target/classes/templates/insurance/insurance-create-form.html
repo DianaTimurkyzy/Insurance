@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title> Save Insurance </title>
+</head>
+<body>
+
+<div class="container">
+
+    <h3>Insurance Directory</h3>
+    <hr>
+
+    <p class="h4 mb-4">Save Insurance</p>
+
+    <form action="#" th:action="@{/insurance/save(bankId=${bank_Id})}"
+          th:object="${insurance}" method="POST">
+
+        <label for="insuranceType"> Insurance Type </label>
+        <input type="text" th:field="*{insuranceDTO.insuranceType}"name="insuranceType" id="insuranceType"
+               class="form-control mb4 w-25">
+
+        <label for="pricePerMonth"> Price per month </label>
+        <input type="number" th:field="*{insuranceDTO.pricePerMonth}" name="pricePerMonth" id="pricePerMonth"
+               class="form-control mb4 w-25">
+
+        <label for="percentage">Coverage percentage </label>
+        <input type="number" th:field="*{insuranceDTO.coveragePercentage}" name="percentage" id="percentage"
+               class="form-control mb4 w-25">
+
+        <button type="submit" class="btn btn-info col-2">Save</button>
+
+    </form>
+
+    <hr>
+    <a th:href="@{/insurance/getAllByBankId(bankId=${bank_Id})}">Insurance List</a>
+</div>
+
+</body>
+</html>

@@ -25,22 +25,10 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public Transaction getById(long id) {
-        Transaction transaction = repository.findById(id).get();
-        transaction.setCustomer(null);
-        return transaction;
+    public List<Transaction> getAllByCustomerId(long id) {
+        return repository.findAllByCustomer_Id(id);
     }
 
-    @Override
-    public List<Transaction> getAll() {
-        List<Transaction> transactions = repository.findAll();
-
-        transactions.stream().forEach(transaction -> {
-            transaction.setCustomer(null);
-        });
-
-        return transactions;
-    }
 
     @Override
     public void save(TransactionRequest request) {

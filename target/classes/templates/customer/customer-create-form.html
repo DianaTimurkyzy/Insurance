@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title> Save Customer </title>
+</head>
+<body>
+
+<div class="container">
+
+    <h3>Customer Directory</h3>
+    <hr>
+
+    <p class="h4 mb-4">Save Customer</p>
+
+    <form action="#" th:action="@{/customer/save(insuranceId=${insurance_Id})}"
+          th:object="${customer}" method="POST">
+
+        <label for="sin">SIN</label>
+        <input type="number" th:field="*{customerDTO.sin}" name="sin" id="sin"
+               class="form-control mb4 w-25">
+
+        <label for="signingDate">Signing date</label>
+        <input type="date" th:field="*{customerDTO.signingDate}" name="signingDate" id="signingDate"
+               class="form-control mb4 w-25">
+
+        <label for="isPaid">Payment for this month </label>
+        <div>
+            <input type="hidden" name="isPaid" value="false" />
+            <input type="checkbox" th:checked="*{customerDTO.paid}" name="isPaid" id="isPaid" value="true">
+        </div>
+
+        <button type="submit" class="btn btn-info col-2">Save</button>
+
+    </form>
+
+    <hr>
+    <a th:href="@{/customer/getAllByInsuranceId(insuranceId=${insurance_Id})}">Customer List</a>
+
+</div>
+
+</body>
+</html>

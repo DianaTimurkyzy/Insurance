@@ -10,8 +10,8 @@ import java.util.List;
 @Repository
 public interface InsuranceRepository extends JpaRepository<Insurance, Long> {
 
-    boolean existsByInsuranceTypeAndBankAccountId(InsuranceType insuranceType, long bankAccountId);
+    boolean existsByInsuranceTypeAndBankId(InsuranceType insuranceType, long bankId);
 
-    List<Insurance> findAllByBankAccount_Id(long bankId);
+    List<Insurance> findAllByBank_Id(long bankId);
 
 }

@@ -2,9 +2,9 @@ package com.diana.insurance.service;
 
 import com.diana.insurance.adviser.exception.ObjectAlreadyExistsException;
 import com.diana.insurance.controller.request.InsuranceRequest;
-import com.diana.insurance.entity.BankAccount;
+import com.diana.insurance.entity.Bank;
 import com.diana.insurance.entity.Insurance;
-import com.diana.insurance.repository.BankAccountRepository;
+import com.diana.insurance.repository.BankRepository;
 import com.diana.insurance.repository.InsuranceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,38 +15,17 @@ import java.util.List;
 public class InsuranceServiceImpl implements InsuranceService {
 
     private final InsuranceRepository repository;
-    private final BankAccountRepository bankAccountRepository;
+    private final BankRepository bankRepository;
 
     @Autowired
-    public InsuranceServiceImpl(InsuranceRepository repository, BankAccountRepository bankAccountRepository) {
+    public InsuranceServiceImpl(InsuranceRepository repository, BankRepository bankRepository) {
         this.repository = repository;
-        this.bankAccountRepository = bankAccountRepository;
-    }
-
-    @Override
-    public Insurance getById(long id) {
-        Insurance insurance = repository.findById(id).get();
-
-        insurance.setCustomers(null);
-
-        return insurance;
-    }
-
-    @Override
-    public List<Insurance> getAll() {
-
-        List<Insurance> insurances = repository.findAll();
-
-        insurances.forEach(insurance -> {
-            insurance.setCustomers(null);
-        });
-
-        return insurances;
+        this.bankRepository = bankRepository;
     }
 
     @Override
     public List<Insurance> getInsurancesByBankId(long id) {
-        List<Insurance> insurances = repository.findAllByBankAccount_Id(id);
+        List<Insurance> insurances = repository.findAllByBank_Id(id);
 
         insurances.stream().forEach(insurance -> {
             insurance.setCustomers(null);
@@ -57,16 +36,16 @@ public class InsuranceServiceImpl implements InsuranceService {
 
     @Override
     public void save(InsuranceRequest request) {
-        if (repository.existsByInsuranceTypeAndBankAccountId(request.getInsuranceDTO().getInsuranceType(), request.getBankAccountId())) {
+        if (repository.existsByInsuranceTypeAndBankId(request.getInsuranceDTO().getInsuranceType(), request.getBankId())) {
             throw new ObjectAlreadyExistsException("Bank already has the Insurance type");
         } else {
-            BankAccount bankAccount = bankAccountRepository.findById(request.getBankAccountId()).get();
+            Bank bank = bankRepository.findById(request.getBankId()).get();
             Insurance insurance = new Insurance(
                     request.getInsuranceDTO().getInsuranceType(),
                     request.getInsuranceDTO().getPricePerMonth(),
                     request.getInsuranceDTO().getCoveragePercentage()
             );
-            insurance.setBankAccount(bankAccount);
+            insurance.setBank(bank);
             repository.save(insurance);
         }
     }
@@ -76,7 +55,7 @@ public class InsuranceServiceImpl implements InsuranceService {
 
         Insurance insurance = repository.findById(id).get();
 
-        insurance.setBankAccount(null);
+        insurance.setBank(null);
 
         repository.delete(insurance);
     }

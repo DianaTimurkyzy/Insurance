@@ -7,9 +7,7 @@ import java.util.List;
 
 public interface TransactionService {
 
-    Transaction getById(long id);
-
-    List<Transaction> getAll();
+    List<Transaction> getAllByCustomerId(long id);
 
     void save(TransactionRequest request);
 

@@ -7,11 +7,9 @@ import java.util.List;
 
 public interface CustomerService {
 
-    Customer getById(long id);
-
-    List<Customer> getAll();
-
     void save(CustomerRequest request);
 
     void deleteById(long id);
+
+    List<Customer> getAllByInsuranceId(long id);
 }

@@ -17,7 +17,7 @@ public class Insurance {
     private long Id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "Type")
+    @Column(name = "TYPE")
     private InsuranceType insuranceType;
 
     @Column(name = "PRICE_PER_MONTH")
@@ -27,8 +27,8 @@ public class Insurance {
     private int coveragePercentage;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "BANK_ACCOUNT_ID")
-    private BankAccount bankAccount;
+    @JoinColumn(name = "BANK_ID")
+    private Bank bank;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(

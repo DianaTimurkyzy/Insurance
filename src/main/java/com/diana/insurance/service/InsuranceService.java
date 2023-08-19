@@ -7,10 +7,6 @@ import java.util.List;
 
 public interface InsuranceService {
 
-    Insurance getById(long id);
-
-    List<Insurance> getAll();
-
     List<Insurance> getInsurancesByBankId(long id);
 
     void save(InsuranceRequest request);
