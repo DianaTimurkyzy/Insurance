@@ -9,11 +9,11 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class BankAccountDTO {
+public class BankDTO {
 
     @NotBlank
     @Size(min = 10, max = 20)
-    private String accountNumber;
+    private String registrationNumber;
 
     @NotBlank
     private String name;

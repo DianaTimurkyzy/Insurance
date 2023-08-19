@@ -20,7 +20,7 @@
     </changeSet>
 
     <changeSet id="3" author="diana">
-        <comment>Adding logo column to bank_account</comment>
+        <comment>Adding logo column to the Bank</comment>
         <sqlFile path="sql/liquibase.mysql.alter.table.1.sql"
                  splitStatements="true"
                  endDelimiter=";"

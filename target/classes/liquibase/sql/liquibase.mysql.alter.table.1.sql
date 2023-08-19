@@ -1,3 +1,4 @@
-ALTER TABLE bank_account
 
-ADD `LOGO`  BLOB;
+ALTER TABLE bank
+
+    ADD `LOGO` BLOB NULL;

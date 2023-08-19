@@ -24,24 +24,10 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer getById(long id) {
-        Customer customer = repository.findById(id).get();
-
-        customer.setInsurances(null);
-
-        return customer;
+    public List<Customer> getAllByInsuranceId(long id) {
+        return repository.findAllByInsurances_Id(id);
     }
 
-    @Override
-    public List<Customer> getAll() {
-        List<Customer> customers = repository.findAll();
-
-        customers.stream().forEach(customer -> {
-            customer.setInsurances(null);
-        });
-
-        return customers;
-    }
 
     @Override
     public void save(CustomerRequest request) {
@@ -68,6 +54,5 @@ public class CustomerServiceImpl implements CustomerService {
 
         repository.delete(customer);
     }
-
 
 }

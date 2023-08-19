@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Insurance Directory</title>
+</head>
+<body>
+
+<div class="container">
+
+    <h3>Insurance Directory</h3>
+    <hr>
+
+    <a th:href="@{/insurance/showFormForAdd(bankId=${bank_Id})}"
+       class="btn btn-primary btn-sm mb-3">
+        Add Insurance
+    </a>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>Type</th>
+            <th>Price per month</th>
+            <th>Coverage percentage</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="insurance : ${insurances}">
+
+            <td th:text="${insurance.insuranceType}"/>
+            <td th:text="${insurance.pricePerMonth}"/>
+            <td th:text="${insurance.coveragePercentage}"/>
+            <td>
+                <a th:href="@{/insurance/deleteById(insuranceId=${insurance.id}, bankId=${bank_Id})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="if (!(confirm('Are you sure you want to delete this insurance?'))) return false">
+                    Delete
+                </a>
+                <a th:href="@{/customer/getAllByInsuranceId(insuranceId=${insurance.id})}"
+                   class="btn btn-info btn-sm">
+                    Show Customers
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+    <a th:href="@{/bank/getAll}">Back to Bank List</a>
+</div>
+
+</body>
+</html>

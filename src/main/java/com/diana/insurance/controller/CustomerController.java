@@ -1,15 +1,13 @@
 package com.diana.insurance.controller;
 
 import com.diana.insurance.controller.request.CustomerRequest;
-import com.diana.insurance.entity.Customer;
 import com.diana.insurance.service.CustomerService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@RestController
+@Controller
 @RequestMapping("/customer")
 public class CustomerController {
 
@@ -20,25 +18,35 @@ public class CustomerController {
         this.service = service;
     }
 
-    @GetMapping("/getById")
-    public Customer getById(@RequestParam long id) {
-        return service.getById(id);
+    @GetMapping("/getAllByInsuranceId")
+    public String getAllByInsuranceId(@RequestParam long insuranceId, Model model) {
+        model.addAttribute("customers", service.getAllByInsuranceId(insuranceId));
+        model.addAttribute("insurance_Id", insuranceId);
+
+        return "customer/customer-main-page";
     }
 
-    @GetMapping("/getAll")
-    public List<Customer> getAll() {
-        return service.getAll();
+    @GetMapping("/showFormForAdd")
+    public String showFormForAdd(@RequestParam long insuranceId, Model model) {
+        model.addAttribute("customer", new CustomerRequest());
+        model.addAttribute("insurance_Id", insuranceId);
+
+        return "customer/customer-create-form";
     }
 
     @PostMapping("/save")
-    public void save(@RequestBody @Valid CustomerRequest request) {
-        System.out.println(request.getCustomerDTO().isPaid() + "controller");
+    public String save(@RequestParam long insuranceId, @ModelAttribute CustomerRequest request) {
+        request.setInsuranceId(insuranceId);
         service.save(request);
+
+        return "redirect:/customer/getAllByInsuranceId?insuranceId=" + insuranceId;
     }
 
-    @DeleteMapping("/deleteById")
-    public void deleteById(@RequestParam long id) {
-        service.deleteById(id);
+    @GetMapping("/deleteById")
+    public String deleteById(@RequestParam long customerId, @RequestParam long insuranceId) {
+        service.deleteById(customerId);
+
+        return "redirect:/customer/getAllByInsuranceId?insuranceId=" + insuranceId;
     }
 
 }

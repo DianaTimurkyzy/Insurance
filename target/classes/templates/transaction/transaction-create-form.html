@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title> Save Transaction </title>
+</head>
+<body>
+
+<div class="container">
+
+    <h3>Transaction Directory</h3>
+    <hr>
+
+    <p class="h4 mb-4">Save Transaction</p>
+
+    <form action="#" th:action="@{/transaction/save(customerId=${customer_Id})}"
+          th:object="${transaction}" method="POST">
+
+        <label for="month">Month</label>
+        <input type="text" th:field="*{transactionDTO.month}" name="month" id="month"
+               class="form-control mb4 w-25">
+
+        <label for="paidAt">Paid at</label>
+        <input type="date" th:field="*{transactionDTO.paidAt}" name="paidAt" id="paidAt"
+               class="form-control mb4 w-25">
+
+        <label for="amountPaid">Paid Amount</label>
+        <input type="number" th:field="*{transactionDTO.amountPaid}" name="amountPaid" id="amountPaid"
+               class="form-control mb4 w-25">
+
+        <button type="submit" class="btn btn-info col-2">Save</button>
+
+    </form>
+
+    <hr>
+    <a th:href="@{/transaction/getAllByCustomerId(customerId=${customer_Id})}">Transaction List</a>
+
+</div>
+
+</body>
+</html>
