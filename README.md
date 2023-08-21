@@ -16,7 +16,7 @@ You should download a MySQL database and run the project. Liquibase will automat
 * Other tools: Git, Maven, GitHub , Lombok
 
 
-![Image of Maint](https://github.com/DianaTimurkyzy/Insurance/blob/images/bank_page.jpg?raw=true)
-![Image of Maint](https://github.com/DianaTimurkyzy/Insurance/blob/images/insurance_page.jpg?raw=true)
-![Image of Maint](https://github.com/DianaTimurkyzy/Insurance/blob/images/owner_page.jpg?raw=true)
-![Image of Maint](https://github.com/DianaTimurkyzy/Insurance/blob/images/db_page.jpg?raw=true)
+![Image of Maint](https://github.com/DianaTimurkyzy/Insurance/blob/main/images/bank_page.jpg?raw=true)
+![Image of Maint](https://github.com/DianaTimurkyzy/Insurance/blob/main/images/insurance_page.jpg?raw=true)
+![Image of Maint](https://github.com/DianaTimurkyzy/Insurance/blob/main/images/owner_page.jpg?raw=true)
+![Image of Maint](https://github.com/DianaTimurkyzy/Insurance/blob/main/images/db_page.jpg?raw=true)
